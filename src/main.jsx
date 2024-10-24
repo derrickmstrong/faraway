@@ -15,11 +15,11 @@ const renderApp = () => {
   root.render(
     <StrictMode>
       <Router>
-        <Auth0ProviderWithHistory>
-          <ThemeProvider>
+        <ThemeProvider>
+          <Auth0ProviderWithHistory>
             <App />
-          </ThemeProvider>
-        </Auth0ProviderWithHistory>
+          </Auth0ProviderWithHistory>
+        </ThemeProvider>
       </Router>
     </StrictMode>
   );
@@ -33,7 +33,7 @@ const showSpinner = () => {
 const hideSpinner = () => {
   setTimeout(() => {
     renderApp();
-  }, 3000);
+  }, 1250);
 };
 
 showSpinner();
