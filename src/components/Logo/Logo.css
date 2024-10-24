@@ -1,7 +1,7 @@
 .logo-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+    align-items: center;
   padding: 10px 20px;
   background-color: #f4a226;
 }
@@ -18,10 +18,14 @@
   padding: 2.4rem 0;
 }
 
+.welcome {
+margin-right: 15px;
+}
 .user-name {
   margin-right: 20px;
 }
 
 .auth-button {
   margin-left: -111px;
+  height: 50px;
 }
