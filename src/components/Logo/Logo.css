@@ -18,6 +18,10 @@
   padding: 2.4rem 0;
 }
 
+.user-name {
+  margin-right: 20px;
+}
+
 .auth-button {
   margin-left: -111px;
 }
