@@ -6,22 +6,26 @@ const Logo = () => {
 
   return (
     <div className="logo-container">
-      <span className="logo-text">🌴 FarAway 🧳</span>
-      {isAuthenticated && user && (
-        <span className="user-name">Welcome, {user.name}</span>
-      )}
-      {isAuthenticated ? (
-        <button
-          className="auth-button"
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          Logout
-        </button>
-      ) : (
-        <button className="auth-button" onClick={() => loginWithRedirect()}>
-          Login
-        </button>
-      )}
+      <div>
+        {isAuthenticated && user && (
+          <span className="user-name">Welcome, {user.name}</span>
+        )}
+      </div>
+      <div>
+        <span className="logo-text">🌴 FarAway 🧳</span>
+        {isAuthenticated ? (
+          <button
+            className="auth-button"
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
+            Logout
+          </button>
+        ) : (
+          <button className="auth-button" onClick={() => loginWithRedirect()}>
+            Login
+          </button>
+        )}
+      </div>
     </div>
   );
 };
