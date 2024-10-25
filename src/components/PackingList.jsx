@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import { useContext, useState } from "react";
+import ThemeContext from "../context/ThemeContext.jsx";
 import Modal from "react-modal";
 import List from "./List.jsx";
 
@@ -16,27 +16,8 @@ const customStyles = {
   },
 };
 
-const PackingList = ({
-  user,
-  handleDeleteItem,
-  handleToggleItem,
-  handleClearList,
-}) => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/api/packing-list?user=${user.sub}`);
-        const data = await response.json();
-        setItems(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [user]);
+const PackingList = () => {
+  const { items, handleDeleteItem, handleToggleItem, handleClearList } = useContext(ThemeContext);
 
   const [sortBy, setSortBy] = useState("input");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -110,15 +91,6 @@ const PackingList = ({
       </Modal>
     </div>
   );
-};
-
-PackingList.propTypes = {
-  user: PropTypes.shape({
-    sub: PropTypes.string.isRequired,
-  }).isRequired,
-  handleDeleteItem: PropTypes.func.isRequired,
-  handleToggleItem: PropTypes.func.isRequired,
-  handleClearList: PropTypes.func.isRequired,
 };
 
 export default PackingList;

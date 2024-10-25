@@ -1,5 +1,6 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { UserProvider } from "./context/UserContext.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import Auth0ProviderWithHistory from "./auth/Auth0ProviderWithHistory";
@@ -12,13 +13,15 @@ const root = createRoot(rootElement);
 const renderApp = () => {
   document.body.classList.remove("loading");
   root.render(
+    <StrictMode>
       <Router>
-        <Auth0ProviderWithHistory>
-          <UserProvider>
+        <ThemeProvider>
+          <Auth0ProviderWithHistory>
             <App />
-          </UserProvider>
-        </Auth0ProviderWithHistory>
+          </Auth0ProviderWithHistory>
+        </ThemeProvider>
       </Router>
+    </StrictMode>
   );
 };
 

@@ -1,6 +1,8 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext.jsx";
 
-const Stats = ({ items }) => {
+const Stats = () => {
+  const { items } = useContext(ThemeContext);
 
   const totalItems = items.length;
   const totalItemsPacked = items.filter((item) => item.packed).length;
@@ -27,10 +29,6 @@ const Stats = ({ items }) => {
       </footer>
     </em>
   );
-};
-
-Stats.propTypes = {
-  items: PropTypes.array.isRequired,
 };
 
 export default Stats;
