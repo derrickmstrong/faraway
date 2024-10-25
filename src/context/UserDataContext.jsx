@@ -7,24 +7,53 @@ const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
   const { user, isAuthenticated } = useAuth0();
-  const [userData, setUserData] = useState([]);
-
-  console.log("userData 1", userData);
+  const [userData, setUserData] = useState(() => {
+    // Retrieve stored user data from localStorage, if available
+    const savedData = localStorage.getItem("userData");
+    return savedData ? JSON.parse(savedData) : null;
+  });
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      localStorage.setItem("userData", JSON.stringify(user));
-      setUserData(user);
-    } else {
+      // Check if data for the authenticated user is already stored
       const storedUserData = localStorage.getItem("userData");
-      if (storedUserData) {
+
+      if (!storedUserData) {
+        // Create initial user data if not already present
+        const initialUserData = {
+          id: "1",
+          description: "",
+          quantity: 1,
+          packed: false,
+        };
+
+        // Store it in localStorage
+        localStorage.setItem("userData", JSON.stringify(initialUserData));
+        setUserData(initialUserData);
+      } else {
+        // Use the existing data from localStorage
         setUserData(JSON.parse(storedUserData));
       }
     }
   }, [isAuthenticated, user]);
 
+  // Function to update user data and save to localStorage
+  const updateUserData = (newData) => {
+    setUserData((prevData) => {
+      const updatedData = { ...prevData, ...newData };
+      localStorage.setItem("userData", JSON.stringify(updatedData));
+      console.log("updatedData 5", updatedData);
+      return updatedData;
+    });
+  };
+
   const handleAddItems = (newData) => {
-    setUserData((prevData) => [newData, ...prevData]);
+    setUserData((prevData) => {
+      const updatedData = { ...prevData, ...newData };
+      localStorage.setItem("userData", JSON.stringify(updatedData));
+      console.log("updatedData 5", updatedData);
+      return updatedData;
+    });
   };
 
   const handleDeleteItem = (id) => {
@@ -47,6 +76,7 @@ export const UserDataProvider = ({ children }) => {
     <UserDataContext.Provider
       value={{
         userData,
+        updateUserData,
         handleAddItems,
         handleDeleteItem,
         handleToggleItem,
