@@ -13,9 +13,9 @@ const Logo = () => {
         {isAuthenticated ? (
           <div className="auth-button">
             {user && (
-              <div className="welcome-container">
-                <span className="user-name">Welcome, {user.given_name}</span>
-              </div>
+                <span className="welcome-container">
+                  Welcome, {user.given_name}
+                </span>
             )}
             <button
               onClick={() => logout({ returnTo: window.location.origin })}
