@@ -24,7 +24,7 @@ const Stats = () => {
   return (
     <em>
       <footer className="stats">
-        We have {totalItems} items on our list, and {totalItemsLeft} (
+        You have {totalItems} items on your list, and {totalItemsLeft} (
         {totalItemsLeftPercentage}%) items left to pack.
       </footer>
     </em>

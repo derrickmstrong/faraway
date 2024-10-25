@@ -17,7 +17,15 @@ const App = () => {
           <PackingList />
           <Stats />
         </>
-      ) : null}
+      ) : (
+        <div>
+          <h1 style={{ background: "#e5771f" }}>FarAway</h1>
+          <h2>The Trip Planning App</h2>
+          <p className="welcome-message">
+            Please log in to start adding items to your packing list.
+          </p>
+        </div>
+      )}
     </>
   );
 };
