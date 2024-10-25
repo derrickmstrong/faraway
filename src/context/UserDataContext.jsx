@@ -7,34 +7,21 @@ const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
   const { user, isAuthenticated } = useAuth0();
-  const [userData, setUserData] = useState(() => {
-    // Load userData from local storage if available
-    const savedData = localStorage.getItem("userData");
-    return savedData ? JSON.parse(savedData) : [];
-  });
+  const [userData, setUserData] = useState(null);
 
-  console.log('userData 1', userData);
+  console.log("userData 1", userData);
 
-   useEffect(() => {
-     if (isAuthenticated && user) {
-       // Fetch additional data (e.g., from a server) based on the authenticated user
-       const fetchUserData = () => {
-         try {
-          console.log('Setting user data');
-           localStorage.setItem("userData", JSON.stringify(userData));
-         } catch (error) {
-           console.error("Failed to fetch user data", error);
-         }
-       };
-
-       fetchUserData();
-     }
-   }, [isAuthenticated, user, userData]);
-
-  // useEffect(() => {
-  //   // Save userData to local storage whenever they change
-  //   localStorage.setItem("userData", JSON.stringify(userData));
-  // }, [userData]);
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      localStorage.setItem("userData", JSON.stringify(user));
+      setUserData(user);
+    } else {
+      const storedUserData = localStorage.getItem("userData");
+      if (storedUserData) {
+        setUserData(JSON.parse(storedUserData));
+      }
+    }
+  }, [isAuthenticated, user]);
 
   const handleAddItems = (newData) => {
     setUserData((prevData) => [newData, ...prevData]);

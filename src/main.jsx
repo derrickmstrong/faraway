@@ -15,11 +15,11 @@ const renderApp = () => {
   root.render(
     <StrictMode>
       <Router>
-        <UserDataProvider>
-          <Auth0ProviderWithHistory>
+        <Auth0ProviderWithHistory>
+          <UserDataProvider>
             <App />
-          </Auth0ProviderWithHistory>
-        </UserDataProvider>
+          </UserDataProvider>
+        </Auth0ProviderWithHistory>
       </Router>
     </StrictMode>
   );
