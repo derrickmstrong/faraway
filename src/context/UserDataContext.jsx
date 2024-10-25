@@ -10,7 +10,7 @@ export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState(() => {
     // Retrieve stored user data from localStorage, if available
     const savedData = localStorage.getItem("userData");
-    return savedData ? JSON.parse(savedData) : null;
+    return savedData ? JSON.parse(savedData) : [];
   });
 
   useEffect(() => {
