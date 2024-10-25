@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import UserDataContext from "../context/UserDataContext.jsx";
+import ThemeContext from "../context/ThemeContext.jsx";
 import Modal from "react-modal";
 import List from "./List.jsx";
 
@@ -17,28 +17,26 @@ const customStyles = {
 };
 
 const PackingList = () => {
-  const { userData, handleDeleteItem, handleToggleItem, handleClearList } = useContext(UserDataContext);
-
-  console.log('userData 3', userData);
+  const { items, handleDeleteItem, handleToggleItem, handleClearList } = useContext(ThemeContext);
 
   const [sortBy, setSortBy] = useState("input");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Handle sorting userData
+  // Handle sorting items
   const handleSortItems = (e) => {
     setSortBy(e.target.value);
   };
 
-  // Sort userData based on the selected option
+  // Sort items based on the selected option
   let sortedItems;
 
-  if (sortBy === "input") sortedItems = userData;
+  if (sortBy === "input") sortedItems = items;
   if (sortBy === "description")
-    sortedItems = [...userData].sort((a, b) =>
+    sortedItems = [...items].sort((a, b) =>
       a.description.localeCompare(b.description)
     );
   if (sortBy === "packed")
-    sortedItems = [...userData].sort((a, b) => b.packed - a.packed);
+    sortedItems = [...items].sort((a, b) => b.packed - a.packed);
 
   // Reset the sortBy state to "input" when the list is cleared
   const handleResetSortBy = () => {
@@ -54,7 +52,7 @@ const PackingList = () => {
   return (
     <div className="list">
       <ul>
-        {sortedItems?.map((item) => (
+        {sortedItems.map((item) => (
           <List
             key={item.id}
             item={item}
@@ -65,14 +63,14 @@ const PackingList = () => {
       </ul>
 
       <div className="actions">
-        {userData.length > 1 && (
+        {items.length > 1 && (
           <select value={sortBy} onChange={handleSortItems}>
             <option value="input">Sort by Input Order</option>
             <option value="description">Sort by Description</option>
             <option value="packed">Sort by Packed Status</option>
           </select>
         )}
-        {userData.length > 0 && (
+        {items.length > 0 && (
           <button onClick={() => setIsModalOpen(true)}>Clear List</button>
         )}
       </div>

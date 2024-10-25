@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import UserDataContext from "../context/UserDataContext.jsx";
+import ThemeContext from "../context/ThemeContext.jsx";
 
 const Form = () => {
-  const { handleAddItems } = useContext(UserDataContext);
+  const { handleAddItems } = useContext(ThemeContext);
 
   const id = uuidv4();
   const [quantity, setQuantity] = useState(1);
@@ -35,7 +35,7 @@ const Form = () => {
         onChange={(e) => setQuantity(Number(e.target.value))}
       >
         {/* Create array with 100 items */}
-        {Array.from({ length: 100 }, (_, i) => i + 1)?.map((num) => (
+        {Array.from({ length: 100 }, (_, i) => i + 1).map((num) => (
           <option key={num} value={num}>
             {num}
           </option>

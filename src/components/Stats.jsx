@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import UserDataContext from "../context/UserDataContext.jsx";
+import ThemeContext from "../context/ThemeContext.jsx";
 
 const Stats = () => {
-  const { userData } = useContext(UserDataContext);
+  const { items } = useContext(ThemeContext);
 
-  const totalItems = userData.length;
-  const totalItemsPacked = userData.filter((item) => item.packed).length;
+  const totalItems = items.length;
+  const totalItemsPacked = items.filter((item) => item.packed).length;
   const totalItemsLeft = totalItems - totalItemsPacked;
   const totalItemsLeftPercentage = Math.round(
     (totalItemsLeft / totalItems) * 100
@@ -24,8 +24,8 @@ const Stats = () => {
   return (
     <em>
       <footer className="stats">
-        You have {totalItems} userData on your list, and {totalItemsLeft} (
-        {totalItemsLeftPercentage}%) userData left to pack.
+        You have {totalItems} items on your list, and {totalItemsLeft} (
+        {totalItemsLeftPercentage}%) items left to pack.
       </footer>
     </em>
   );

@@ -4,14 +4,13 @@ import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
-import UserDataContext from "./context/UserDataContext";
 
 const App = () => {
-  const { isAuthenticated } = useAuth0();
-  const { userData } = useContext(UserDataContext);
+  const { isAuthenticated, isLoading } = useAuth0();
 
-  console.log("userData 2", userData);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
