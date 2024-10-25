@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { ThemeProvider } from "./context/ThemeContext.jsx";
+import { UserDataProvider } from "./context/UserDataContext.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import Auth0ProviderWithHistory from "./auth/Auth0ProviderWithHistory";
@@ -15,11 +15,11 @@ const renderApp = () => {
   root.render(
     <StrictMode>
       <Router>
-        <ThemeProvider>
+        <UserDataProvider>
           <Auth0ProviderWithHistory>
             <App />
           </Auth0ProviderWithHistory>
-        </ThemeProvider>
+        </UserDataProvider>
       </Router>
     </StrictMode>
   );
@@ -33,7 +33,7 @@ const showSpinner = () => {
 const hideSpinner = () => {
   setTimeout(() => {
     renderApp();
-  }, 1250);
+  }, 1000);
 };
 
 showSpinner();

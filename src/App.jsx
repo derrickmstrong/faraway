@@ -6,11 +6,7 @@ import Stats from "./components/Stats";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const App = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const { isAuthenticated } = useAuth0();
 
   return (
     <>
