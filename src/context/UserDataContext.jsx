@@ -10,6 +10,7 @@ export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState(() => {
     // Load userData from local storage if available
     const savedData = localStorage.getItem("userData");
+    console.log('savedData', savedData);
     return savedData ? JSON.parse(savedData) : [];
   });
 
@@ -18,10 +19,8 @@ export const UserDataProvider = ({ children }) => {
        // Fetch additional data (e.g., from a server) based on the authenticated user
        const fetchUserData = async () => {
          try {
-           const response = await fetch(`/api/userdata?email=${user.email}`);
-           const data = await response.json();
-           setUserData(data);
-           localStorage.setItem("userData", JSON.stringify(data));
+          console.log('Setting user data');
+           localStorage.setItem("userData", JSON.stringify(userData));
          } catch (error) {
            console.error("Failed to fetch user data", error);
          }
@@ -29,7 +28,7 @@ export const UserDataProvider = ({ children }) => {
 
        fetchUserData();
      }
-   }, [isAuthenticated, user]);
+   }, [isAuthenticated, user, userData]);
 
   // useEffect(() => {
   //   // Save userData to local storage whenever they change
