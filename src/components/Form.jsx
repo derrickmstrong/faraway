@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import PropTypes from "prop-types";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import ThemeContext from "../context/ThemeContext.jsx";
 
-const Form = () => {
-  const { handleAddItems } = useContext(ThemeContext);
+const Form = ({ handleAddItems }) => {
 
   const id = uuidv4();
   const [quantity, setQuantity] = useState(1);
@@ -50,6 +49,10 @@ const Form = () => {
       <button>Add</button>
     </form>
   );
+};
+
+Form.propTypes = {
+  handleAddItems: PropTypes.func.isRequired,
 };
 
 export default Form;

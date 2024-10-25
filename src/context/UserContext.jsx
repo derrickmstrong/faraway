@@ -1,15 +1,27 @@
-import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Create a Context for the theme
-const ThemeContext = createContext();
+const UserContext = createContext();
 
-export const ThemeProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
+  const { isAuthenticated, user, isLoading } = useAuth0();
   const [items, setItems] = useState(() => {
     // Load items from local storage if available
     const savedItems = localStorage.getItem("items");
     return savedItems ? JSON.parse(savedItems) : [];
   });
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      setItems(user);
+    } else {
+      localStorage.removeItem("user");
+      setItems(null);
+    }
+  }, [isAuthenticated, user]);
 
   useEffect(() => {
     // Save items to local storage whenever they change
@@ -37,8 +49,10 @@ export const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider
+    <UserContext.Provider
       value={{
+        isAuthenticated,
+        isLoading,
         items,
         handleAddItems,
         handleDeleteItem,
@@ -47,12 +61,13 @@ export const ThemeProvider = ({ children }) => {
       }}
     >
       {children}
-    </ThemeContext.Provider>
+    </UserContext.Provider>
   );
 };
 
-ThemeProvider.propTypes = {
+export const useUser = () => useContext(UserContext);
+
+UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default ThemeContext;
