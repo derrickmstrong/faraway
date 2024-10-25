@@ -11,7 +11,7 @@ const App = () => {
   const { isAuthenticated } = useAuth0();
   const { userData } = useContext(UserDataContext);
 
-  console.log("userData", userData);
+  console.log("userData 2", userData);
 
   return (
     <>

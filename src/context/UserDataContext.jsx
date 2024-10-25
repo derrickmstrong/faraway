@@ -14,7 +14,7 @@ export const UserDataProvider = ({ children }) => {
     return savedData ? JSON.parse(savedData) : [];
   });
 
-  console.log('userData', userData);
+  console.log('userData 1', userData);
 
    useEffect(() => {
      if (isAuthenticated && user) {

@@ -19,7 +19,7 @@ const customStyles = {
 const PackingList = () => {
   const { userData, handleDeleteItem, handleToggleItem, handleClearList } = useContext(UserDataContext);
 
-  console.log('userData', userData);
+  console.log('userData 3', userData);
 
   const [sortBy, setSortBy] = useState("input");
   const [isModalOpen, setIsModalOpen] = useState(false);
