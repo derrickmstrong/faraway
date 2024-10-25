@@ -48,12 +48,12 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const handleDeleteItem = (id) => {
-    setUserData((prevData) => prevData.filter((data) => data.id !== id));
+    setUserData((prevData) => prevData?.filter((data) => data.id !== id));
   };
 
   const handleToggleItem = (id) => {
     setUserData((prevData) =>
-      prevData.map((data) =>
+      prevData?.map((data) =>
         data.id === id ? { ...data, packed: !data.packed } : data
       )
     );

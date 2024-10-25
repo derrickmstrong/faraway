@@ -35,7 +35,7 @@ const Form = () => {
         onChange={(e) => setQuantity(Number(e.target.value))}
       >
         {/* Create array with 100 items */}
-        {Array.from({ length: 100 }, (_, i) => i + 1).map((num) => (
+        {Array.from({ length: 100 }, (_, i) => i + 1)?.map((num) => (
           <option key={num} value={num}>
             {num}
           </option>
