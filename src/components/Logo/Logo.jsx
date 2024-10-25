@@ -1,5 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import "./Logo.css"; // Assuming you have a CSS file for styling
 
 const Logo = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
@@ -8,22 +7,27 @@ const Logo = () => {
 
   return (
     <div className="logo-container">
-      <span className="logo-text">🌴 FarAway 🧳</span>
-      {isAuthenticated && user ? (
-        <div className="user-info">
-          <span className="user-name">Welcome, {user.name}</span>
-          <button
-            className="auth-button"
-            onClick={() => logout({ returnTo: window.location.origin })}
-          >
-            Logout
-          </button>
-        </div>
-      ) : (
-        <button className="auth-button" onClick={() => loginWithRedirect()}>
-          Login
-        </button>
-      )}
+      <div className="logo-row">
+        <span>🌴 FarAway 🧳</span>
+        {isAuthenticated ? (
+          <div className="auth-button">
+            {user && (
+              <div className="welcome-container">
+                <span className="user-name">Welcome, {user.name}</span>
+              </div>
+            )}
+            <button
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className="auth-button">
+            <button onClick={() => loginWithRedirect()}>Login</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
