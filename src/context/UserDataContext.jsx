@@ -7,7 +7,7 @@ const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
   const { user, isAuthenticated } = useAuth0();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
 
   console.log("userData 1", userData);
 
