@@ -3,6 +3,8 @@ import "./Logo.css";
 
 const Logo = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  console.log('isAuthenticated', isAuthenticated);
+  console.log('user', user);
 
   return (
     <div className="logo-container">
