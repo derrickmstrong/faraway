@@ -38,15 +38,6 @@ export const UserDataProvider = ({ children }) => {
   }, [isAuthenticated, user]);
 
   // Function to update user data and save to localStorage
-  const updateUserData = (newData) => {
-    setUserData((prevData) => {
-      const updatedData = { ...prevData, ...newData };
-      localStorage.setItem("userData", JSON.stringify(updatedData));
-      console.log("updatedData 5", updatedData);
-      return updatedData;
-    });
-  };
-
   const handleAddItems = (newData) => {
     setUserData((prevData) => {
       const updatedData = { ...prevData, ...newData };
@@ -76,7 +67,6 @@ export const UserDataProvider = ({ children }) => {
     <UserDataContext.Provider
       value={{
         userData,
-        updateUserData,
         handleAddItems,
         handleDeleteItem,
         handleToggleItem,
