@@ -14,6 +14,8 @@ export const UserDataProvider = ({ children }) => {
     return savedData ? JSON.parse(savedData) : [];
   });
 
+  console.log('userData', userData);
+
    useEffect(() => {
      if (isAuthenticated && user) {
        // Fetch additional data (e.g., from a server) based on the authenticated user
