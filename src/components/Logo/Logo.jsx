@@ -13,7 +13,7 @@ const Logo = () => {
           <div className="auth-button">
             {user && (
               <div className="welcome-container">
-                <span className="user-name">Welcome, {user.name}</span>
+                <span className="user-name">Welcome, {user.given_name}</span>
               </div>
             )}
             <button
