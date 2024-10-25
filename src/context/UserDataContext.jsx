@@ -10,7 +10,6 @@ export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState(() => {
     // Load userData from local storage if available
     const savedData = localStorage.getItem("userData");
-    console.log('savedData', savedData);
     return savedData ? JSON.parse(savedData) : [];
   });
 
@@ -19,7 +18,7 @@ export const UserDataProvider = ({ children }) => {
    useEffect(() => {
      if (isAuthenticated && user) {
        // Fetch additional data (e.g., from a server) based on the authenticated user
-       const fetchUserData = async () => {
+       const fetchUserData = () => {
          try {
           console.log('Setting user data');
            localStorage.setItem("userData", JSON.stringify(userData));
@@ -61,7 +60,6 @@ export const UserDataProvider = ({ children }) => {
     <UserDataContext.Provider
       value={{
         userData,
-        setUserData,
         handleAddItems,
         handleDeleteItem,
         handleToggleItem,
