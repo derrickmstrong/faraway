@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { UserProvider } from "./context/UserContext.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -13,7 +12,6 @@ const root = createRoot(rootElement);
 const renderApp = () => {
   document.body.classList.remove("loading");
   root.render(
-    <StrictMode>
       <Router>
         <Auth0ProviderWithHistory>
           <UserProvider>
@@ -21,7 +19,6 @@ const renderApp = () => {
           </UserProvider>
         </Auth0ProviderWithHistory>
       </Router>
-    </StrictMode>
   );
 };
 
