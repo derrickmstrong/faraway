@@ -14,7 +14,7 @@ export const UserDataProvider = ({ children }) => {
       const userKey = `userData-${user.nickname}`;
       const storedUserData = localStorage.getItem(userKey);
       console.log("storedUserData", storedUserData);
-      return storedUserData;
+      return [...storedUserData];
     }
   };
   const [userData, setUserData] = useState(initialUserData());
