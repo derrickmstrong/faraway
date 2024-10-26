@@ -25,7 +25,7 @@ const Stats = () => {
     <em>
       <footer className="stats">
         You have {totalItems} items on your list, and {totalItemsLeft} (
-        {totalItemsLeftPercentage}%) userData left to pack.
+        {totalItemsLeftPercentage}%) items left to pack.
       </footer>
     </em>
   );
