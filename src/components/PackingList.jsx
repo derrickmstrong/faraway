@@ -63,14 +63,14 @@ const PackingList = () => {
       </ul>
 
       <div className="actions">
-        {userData.length > 1 && (
+        {userData?.length > 1 && (
           <select value={sortBy} onChange={handleSortItems}>
             <option value="input">Sort by Input Order</option>
             <option value="description">Sort by Description</option>
             <option value="packed">Sort by Packed Status</option>
           </select>
         )}
-        {userData.length > 0 && (
+        {userData?.length > 0 && (
           <button onClick={() => setIsModalOpen(true)}>Clear List</button>
         )}
       </div>
