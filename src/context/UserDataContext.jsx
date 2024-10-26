@@ -8,8 +8,9 @@ export const UserDataProvider = ({ children }) => {
   const { isAuthenticated, user } = useAuth0();
 
   const initialUserData = () => {
+    console.log('AM I AUTHENTICATED?', isAuthenticated);
     // Load userData from local storage if available
-    if (isAuthenticated && user) {
+    if (isAuthenticated) {
       const userKey = `userData-${user.nickname}`;
       const storedUserData = localStorage.getItem(userKey);
       console.log("storedUserData", JSON.parse(storedUserData));
