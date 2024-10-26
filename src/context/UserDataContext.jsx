@@ -5,20 +5,21 @@ import { useAuth0 } from "@auth0/auth0-react";
 const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
+  const initialUserData = () => {
+    // Load userData from local storage if available
+    if (isAuthenticated && user) {
+      const userKey = `userData-${user.nickname}`;
+      const storedUserData = localStorage.getItem(userKey);
+      console.log("storedUserData", storedUserData);
+      // const savedItems = localStorage.getItem("userData");
+      return storedUserData ? JSON.parse(storedUserData) : [];
+    }
+  };
+  
   const { isAuthenticated, user } = useAuth0();
 
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState(initialUserData);
 
-  // () => {
-  //   // Load userData from local storage if available
-  //   if (isAuthenticated && user) {
-  //     const userKey = `userData-${user.sub}`;
-  //     const storedUserData = localStorage.getItem(userKey);
-  //     console.log("storedUserData", storedUserData);
-  //     // const savedItems = localStorage.getItem("userData");
-  //     return storedUserData ? JSON.parse(storedUserData) : [];
-  //   }
-  // };
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
@@ -50,7 +51,7 @@ export const UserDataProvider = ({ children }) => {
   useEffect(() => {
     // Save userData to local storage whenever they change
     if (isAuthenticated && user) {
-      const userKey = `userData-${user.sub}`;
+      const userKey = `userData-${user.nickname}`;
       localStorage.setItem(userKey, JSON.stringify(userData));
     }
   }, [isAuthenticated, user, userData]);
@@ -58,7 +59,7 @@ export const UserDataProvider = ({ children }) => {
   const handleAddItems = (newItem) => {
     if (isAuthenticated && user) {
       try {
-        const userKey = `userData-${user.sub}`;
+        const userKey = `userData-${user.nickname}`;
         localStorage.setItem(userKey, JSON.stringify(newItem));
         setUserData((prevItems) => [newItem, ...prevItems]);
       } catch (error) {
