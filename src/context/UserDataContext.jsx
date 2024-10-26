@@ -18,7 +18,7 @@ export const UserDataProvider = ({ children }) => {
       const userKey = `userData-${user.sub}`;
       const storedUserData = localStorage.getItem(userKey);
       if (storedUserData) {
-        console.log("storedUserData", storedUserData);
+        console.log("storedUserData", JSON.parse(storedUserData));
         // setUserData(JSON.parse(storedUserData));
       }
       // else {
