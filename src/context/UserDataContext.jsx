@@ -13,10 +13,10 @@ export const UserDataProvider = ({ children }) => {
       const userKey = `userData-${user.nickname}`;
       const storedUserData = localStorage.getItem(userKey);
       console.log("storedUserData", JSON.parse(storedUserData));
-      return storedUserData;
+      return JSON.parse(storedUserData);
     }
   };
-  const [userData, setUserData] = useState(initialUserData);
+  const [userData, setUserData] = useState(user ? initialUserData() : []);
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
