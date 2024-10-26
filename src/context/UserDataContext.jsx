@@ -13,29 +13,29 @@ export const UserDataProvider = ({ children }) => {
     return savedItems ? JSON.parse(savedItems) : [];
   });
 
-  // useEffect(() => {
-  //   if (isAuthenticated && user) {
-  //     const userKey = `userData-${user.sub}`;
-  //     const storedUserData = localStorage.getItem(userKey);
-  //     if (storedUserData) {
-  //       setUserData(JSON.parse(storedUserData));
-  //     } else {
-  //       const initialUserData = {
-  //         id: user.sub,
-  //         description: "",
-  //         quantity: 1,
-  //         packed: false,
-  //       };
-  //       localStorage.setItem(userKey, JSON.stringify(initialUserData));
-  //       setUserData(initialUserData);
-  //     }
-  //   }
-  // }, [isAuthenticated, user]);
-
   useEffect(() => {
-    // Save userData to local storage whenever they change
-    localStorage.setItem("userData", JSON.stringify(userData));
-  }, [userData]);
+    if (isAuthenticated && user) {
+      const userKey = `userData-${user.sub}`;
+      const storedUserData = localStorage.getItem(userKey);
+      if (storedUserData) {
+        setUserData(JSON.parse(storedUserData));
+      } else {
+        const initialUserData = {
+          id: user.sub,
+          description: "",
+          quantity: 1,
+          packed: false,
+        };
+        localStorage.setItem(userKey, JSON.stringify(initialUserData));
+        setUserData(initialUserData);
+      }
+    }
+  }, [isAuthenticated, user, userData]);
+
+  // useEffect(() => {
+  //   // Save userData to local storage whenever they change
+  //   localStorage.setItem("userData", JSON.stringify(userData));
+  // }, [userData]);
 
   const handleAddItems = (newItem) => {
     if (isAuthenticated && user) {
