@@ -16,7 +16,7 @@ export const UserDataProvider = ({ children }) => {
       return storedUserData;
     }
   };
-  const [userData, setUserData] = useState(initialUserData());
+  const [userData, setUserData] = useState(initialUserData);
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
