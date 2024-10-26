@@ -32,7 +32,7 @@ export const UserDataProvider = ({ children }) => {
       //   setUserData(initialUserData);
       // }
     }
-  }, [isAuthenticated, user, userData]);
+  }, [isAuthenticated, user]);
 
   // useEffect(() => {
   //   // Save userData to local storage whenever they change
