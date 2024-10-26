@@ -13,7 +13,7 @@ export const UserDataProvider = ({ children }) => {
     if (isAuthenticated) {
       const userKey = `userData-${user.nickname}`;
       const storedUserData = localStorage.getItem(userKey);
-      console.log("storedUserData", JSON.parse(storedUserData));
+      console.log("storedUserData", storedUserData);
       return storedUserData;
     }
   };
