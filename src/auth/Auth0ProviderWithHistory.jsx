@@ -15,7 +15,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
-      cacheLocation="localstorage" // Store tokens in localStorage
+      // cacheLocation="localstorage" // Store tokens in localStorage
     >
       {children}
     </Auth0Provider>

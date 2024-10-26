@@ -16,7 +16,18 @@ export const UserDataProvider = ({ children }) => {
       return JSON.parse(storedUserData);
     }
   };
-  const [userData, setUserData] = useState(user ? initialUserData() : []);
+  const [userData, setUserData] = useState(
+    user
+      ? initialUserData()
+      : [
+          {
+            id: "e410505c-eb8c-407b-b212-5c6d7a0ec516",
+            description: "test",
+            quantity: 1,
+            packed: false,
+          },
+        ]
+  );
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
