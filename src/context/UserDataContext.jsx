@@ -21,20 +21,22 @@ export const UserDataProvider = ({ children }) => {
         if (storedUserData) {
           console.log("storedUserData", JSON.parse(storedUserData));
           setUserData(JSON.parse(storedUserData));
+        } else {
+          const initialUserData = {
+            id: user.sub,
+            description: "",
+            quantity: 1,
+            packed: false,
+          };
+          localStorage.setItem(userKey, JSON.stringify(initialUserData));
+          setUserData(initialUserData);
         }
       } catch (error) {
-        console.error("Error accessing or parsing user data from localStorage:", error);
+        console.error(
+          "Error accessing or parsing user data from localStorage:",
+          error
+        );
       }
-      // else {
-      //   const initialUserData = {
-      //     id: user.sub,
-      //     description: "",
-      //     quantity: 1,
-      //     packed: false,
-      //   };
-      //   localStorage.setItem(userKey, JSON.stringify(initialUserData));
-      //   setUserData(initialUserData);
-      // }
     }
   }, [isAuthenticated, user]);
 
