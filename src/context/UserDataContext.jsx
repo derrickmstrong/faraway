@@ -7,16 +7,18 @@ const UserDataContext = createContext();
 export const UserDataProvider = ({ children }) => {
   const { isAuthenticated, user } = useAuth0();
 
-  const [userData, setUserData] = useState(() => {
-    // Load userData from local storage if available
-    if (isAuthenticated && user) {
-      const userKey = `userData-${user.sub}`;
-      const storedUserData = localStorage.getItem(userKey);
-      console.log('storedUserData', storedUserData);
-      // const savedItems = localStorage.getItem("userData");
-      return storedUserData ? JSON.parse(storedUserData) : [];
-    }
-  });
+  const [userData, setUserData] = useState([]);
+
+  // () => {
+  //   // Load userData from local storage if available
+  //   if (isAuthenticated && user) {
+  //     const userKey = `userData-${user.sub}`;
+  //     const storedUserData = localStorage.getItem(userKey);
+  //     console.log("storedUserData", storedUserData);
+  //     // const savedItems = localStorage.getItem("userData");
+  //     return storedUserData ? JSON.parse(storedUserData) : [];
+  //   }
+  // };
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
@@ -45,13 +47,13 @@ export const UserDataProvider = ({ children }) => {
   //   }
   // }, [isAuthenticated, user]);
 
-  // useEffect(() => {
-  //   // Save userData to local storage whenever they change
-  //   if (isAuthenticated && user) {
-  //     const userKey = `userData-${user.sub}`;
-  //     localStorage.setItem(userKey, JSON.stringify(userData));
-  //   }
-  // }, [isAuthenticated, user, userData]);
+  useEffect(() => {
+    // Save userData to local storage whenever they change
+    if (isAuthenticated && user) {
+      const userKey = `userData-${user.sub}`;
+      localStorage.setItem(userKey, JSON.stringify(userData));
+    }
+  }, [isAuthenticated, user, userData]);
 
   const handleAddItems = (newItem) => {
     if (isAuthenticated && user) {
