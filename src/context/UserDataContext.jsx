@@ -44,13 +44,13 @@ export const UserDataProvider = ({ children }) => {
   //   }
   // }, [isAuthenticated, user]);
 
-  useEffect(() => {
-    // Save userData to local storage whenever they change
-    if (isAuthenticated && user) {
-      const userKey = `userData-${user.sub}`;
-      localStorage.setItem(userKey, JSON.stringify(userData));
-    }
-  }, [isAuthenticated, user, userData]);
+  // useEffect(() => {
+  //   // Save userData to local storage whenever they change
+  //   if (isAuthenticated && user) {
+  //     const userKey = `userData-${user.sub}`;
+  //     localStorage.setItem(userKey, JSON.stringify(userData));
+  //   }
+  // }, [isAuthenticated, user, userData]);
 
   const handleAddItems = (newItem) => {
     if (isAuthenticated && user) {
