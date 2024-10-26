@@ -17,7 +17,7 @@ export const UserDataProvider = ({ children }) => {
     }
   };
   const [userData, setUserData] = useState(
-    user
+    isAuthenticated
       ? initialUserData()
       : [
           {
