@@ -15,11 +15,15 @@ export const UserDataProvider = ({ children }) => {
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      const userKey = `userData-${user.sub}`;
-      const storedUserData = localStorage.getItem(userKey);
-      if (storedUserData) {
-        console.log("storedUserData", JSON.parse(storedUserData));
-        // setUserData(JSON.parse(storedUserData));
+      try {
+        const userKey = `userData-${user.sub}`;
+        const storedUserData = localStorage.getItem(userKey);
+        if (storedUserData) {
+          console.log("storedUserData", JSON.parse(storedUserData));
+          setUserData(JSON.parse(storedUserData));
+        }
+      } catch (error) {
+        console.error("Error accessing or parsing user data from localStorage:", error);
       }
       // else {
       //   const initialUserData = {
@@ -41,9 +45,13 @@ export const UserDataProvider = ({ children }) => {
 
   const handleAddItems = (newItem) => {
     if (isAuthenticated && user) {
-      const userKey = `userData-${user.sub}`;
-      localStorage.setItem(userKey, JSON.stringify(newItem));
-      setUserData((prevItems) => [newItem, ...prevItems]);
+      try {
+        const userKey = `userData-${user.sub}`;
+        localStorage.setItem(userKey, JSON.stringify(newItem));
+        setUserData((prevItems) => [newItem, ...prevItems]);
+      } catch (error) {
+        console.error("Error updating user data in localStorage:", error);
+      }
     }
   };
 
