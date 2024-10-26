@@ -5,6 +5,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
+  const { isAuthenticated, user } = useAuth0();
+
+  const [userData, setUserData] = useState([]);
+
   const initialUserData = () => {
     // Load userData from local storage if available
     if (isAuthenticated && user) {
@@ -12,14 +16,10 @@ export const UserDataProvider = ({ children }) => {
       const storedUserData = localStorage.getItem(userKey);
       console.log("storedUserData", storedUserData);
       // const savedItems = localStorage.getItem("userData");
-      return storedUserData ? JSON.parse(storedUserData) : [];
+      // return storedUserData ? JSON.parse(storedUserData) : [];
     }
   };
-  
-  const { isAuthenticated, user } = useAuth0();
-
-  const [userData, setUserData] = useState(initialUserData);
-
+  initialUserData();
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
