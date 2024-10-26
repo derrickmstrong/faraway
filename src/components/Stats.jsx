@@ -5,7 +5,7 @@ const Stats = () => {
   const { userData } = useContext(UserDataContext);
 
   const totalItems = userData.length;
-  const totalItemsPacked = userData.filter((item) => item.packed).length;
+  const totalItemsPacked = userData?.filter((item) => item.packed).length;
   const totalItemsLeft = totalItems - totalItemsPacked;
   const totalItemsLeftPercentage = Math.round(
     (totalItemsLeft / totalItems) * 100

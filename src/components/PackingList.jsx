@@ -52,7 +52,7 @@ const PackingList = () => {
   return (
     <div className="list">
       <ul>
-        {sortedItems.map((item) => (
+        {sortedItems?.map((item) => (
           <List
             key={item.id}
             item={item}
