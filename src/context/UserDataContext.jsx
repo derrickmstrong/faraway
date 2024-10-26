@@ -17,10 +17,10 @@ export const UserDataProvider = ({ children }) => {
     if (isAuthenticated && user) {
       const userKey = `userData-${user.sub}`;
       const storedUserData = localStorage.getItem(userKey);
-      console.log("storedUserData", storedUserData);
       if (storedUserData) {
-        setUserData(JSON.parse(storedUserData));
-      } 
+        console.log("storedUserData", storedUserData);
+        // setUserData(JSON.parse(storedUserData));
+      }
       // else {
       //   const initialUserData = {
       //     id: user.sub,
@@ -32,7 +32,7 @@ export const UserDataProvider = ({ children }) => {
       //   setUserData(initialUserData);
       // }
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user, userData]);
 
   // useEffect(() => {
   //   // Save userData to local storage whenever they change
