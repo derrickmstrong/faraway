@@ -21,7 +21,7 @@ const Logo = () => {
               <>
                 <span>{profilePicture}</span>
                 <span className="welcome-container">
-                  Welcome, {user.given_name}
+                  {user.given_name}
                 </span>
               </>
             )}
