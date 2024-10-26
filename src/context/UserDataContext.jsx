@@ -19,16 +19,17 @@ export const UserDataProvider = ({ children }) => {
       const storedUserData = localStorage.getItem(userKey);
       if (storedUserData) {
         setUserData(JSON.parse(storedUserData));
-      } else {
-        const initialUserData = {
-          id: user.sub,
-          description: "",
-          quantity: 1,
-          packed: false,
-        };
-        localStorage.setItem(userKey, JSON.stringify(initialUserData));
-        setUserData(initialUserData);
-      }
+      } 
+      // else {
+      //   const initialUserData = {
+      //     id: user.sub,
+      //     description: "",
+      //     quantity: 1,
+      //     packed: false,
+      //   };
+      //   localStorage.setItem(userKey, JSON.stringify(initialUserData));
+      //   setUserData(initialUserData);
+      // }
     }
   }, [isAuthenticated, user, userData]);
 
