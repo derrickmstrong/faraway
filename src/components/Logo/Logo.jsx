@@ -1,10 +1,15 @@
-import './Logo.css';
+import "./Logo.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Logo = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   console.log("isAuthenticated", isAuthenticated);
   console.log("user", user);
+
+  // Add profile picture component to the logo
+  const profilePicture = user ? (
+    <img className="profile-picture" src={user.picture} alt={user.name} />
+  ) : null;
 
   return (
     <div className="logo-container">
@@ -13,9 +18,12 @@ const Logo = () => {
         {isAuthenticated ? (
           <div className="auth-button">
             {user && (
+              <>
+                <span>{profilePicture}</span>
                 <span className="welcome-container">
                   Welcome, {user.given_name}
                 </span>
+              </>
             )}
             <button
               onClick={() => logout({ returnTo: window.location.origin })}

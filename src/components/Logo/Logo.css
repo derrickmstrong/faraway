@@ -6,6 +6,13 @@
   background-color: #f4a226;
 }
 
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
 .welcome-container {
   width: 100%;
   margin-right: 20px;
