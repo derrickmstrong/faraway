@@ -7,19 +7,16 @@ const UserDataContext = createContext();
 export const UserDataProvider = ({ children }) => {
   const { isAuthenticated, user } = useAuth0();
 
-  const [userData, setUserData] = useState([]);
-
   const initialUserData = () => {
     // Load userData from local storage if available
     if (isAuthenticated && user) {
       const userKey = `userData-${user.nickname}`;
       const storedUserData = localStorage.getItem(userKey);
-      console.log("storedUserData", storedUserData);
-      // const savedItems = localStorage.getItem("userData");
-      // return storedUserData ? JSON.parse(storedUserData) : [];
+      console.log("storedUserData", JSON.parse(storedUserData));
+      return storedUserData;
     }
   };
-  initialUserData();
+  const [userData, setUserData] = useState(initialUserData());
 
   // useEffect(() => {
   //   if (isAuthenticated && user) {
