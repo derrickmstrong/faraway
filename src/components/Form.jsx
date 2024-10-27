@@ -34,7 +34,7 @@ const Form = () => {
         <select
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
-          style={{ width: "25%" }}
+          style={{ width: "15%" }}
         >
           {/* Create array with 100 items */}
           {Array.from({ length: 100 }, (_, i) => i + 1).map((num) => (
@@ -48,7 +48,7 @@ const Form = () => {
           placeholder="Item..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          style={{ width: "40%" }}
+          style={{ width: "50%" }}
         />
         <button style={{ width: "25%" }}>Add</button>
       </form>
