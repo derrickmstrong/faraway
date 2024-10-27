@@ -96,7 +96,7 @@ input {
   flex-direction: column;
   gap: 3.2rem;
   align-items: center;
-  height: calc(100vh - 23.5rem);
+  height: calc(100vh - 20.5rem);
 }
 
 .actions button,
