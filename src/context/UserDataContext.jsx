@@ -15,7 +15,7 @@ export const UserDataProvider = ({ children }) => {
       const savedItems = localStorage.getItem(userKey);
       console.log("userKey", userKey);
       console.log("savedItems", savedItems);
-      setUserData(savedItems ? JSON.parse(savedItems) : []);
+      // setUserData(savedItems ? JSON.parse(savedItems) : []);
     }
   }, [isLoading, isAuthenticated, user]);
 
