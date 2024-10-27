@@ -28,27 +28,31 @@ const Form = () => {
   };
 
   return (
-    <form className="add-form" onSubmit={handleSubmit}>
+    <>
       <h3>What do you need for your trip?</h3>
-      <select
-        value={quantity}
-        onChange={(e) => setQuantity(Number(e.target.value))}
-      >
-        {/* Create array with 100 items */}
-        {Array.from({ length: 100 }, (_, i) => i + 1).map((num) => (
-          <option key={num} value={num}>
-            {num}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="Item..."
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <button>Add</button>
-    </form>
+      <form className="add-form" onSubmit={handleSubmit}>
+        <select
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          style={{ width: "25%" }}
+        >
+          {/* Create array with 100 items */}
+          {Array.from({ length: 100 }, (_, i) => i + 1).map((num) => (
+            <option key={num} value={num}>
+              {num}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          placeholder="Item..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          style={{ width: "40%" }}
+        />
+        <button style={{ width: "25%" }}>Add</button>
+      </form>
+    </>
   );
 };
 
