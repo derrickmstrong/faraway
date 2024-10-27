@@ -33,7 +33,7 @@ const Form = () => {
     <>
       {isMobile ? (
         <>
-          <h3>What do you need for your trip?</h3>
+          <h3 className="packing">What do you need for your trip?</h3>
           <form className="add-form" onSubmit={handleSubmit}>
             <select
               value={quantity}
