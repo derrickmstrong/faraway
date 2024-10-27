@@ -161,7 +161,7 @@ input[type="checkbox"] {
   background-color: #76c7ad;
   text-align: center;
   font-weight: 700;
-  padding: 3.2rem 0;
+  padding: 3.2rem 1.5rem;
 }
 
 @media screen and (min-width: 768px) {
