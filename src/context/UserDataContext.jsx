@@ -6,18 +6,25 @@ import { useAuth0 } from "@auth0/auth0-react";
 const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
-  const { user } = useAuth0();
-  const [userData, setUserData] = useState(() => {
-    if (user) console.log('sub', user.sub); // This is the user's unique identifier
-    // Load userData from local storage if available
-    const savedItems = localStorage.getItem("userData");
-    return savedItems ? JSON.parse(savedItems) : [];
-  });
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    // Save userData to local storage whenever they change
-    localStorage.setItem("userData", JSON.stringify(userData));
-  }, [userData]);
+    if (!isLoading && isAuthenticated && user) {
+      const userKey = `userData-${user.sub}`;
+      const savedItems = localStorage.getItem(userKey);
+      console.log("userKey", userKey);
+      console.log("savedItems", savedItems);
+      setUserData(savedItems ? JSON.parse(savedItems) : []);
+    }
+  }, [isLoading, isAuthenticated, user]);
+
+  useEffect(() => {
+    if (user) {
+      const userKey = `userData-${user.sub}`;
+      localStorage.setItem(userKey, JSON.stringify(userData));
+    }
+  }, [userData, user]);
 
   const handleAddItems = (newItem) => {
     setUserData((prevItems) => [newItem, ...prevItems]);
