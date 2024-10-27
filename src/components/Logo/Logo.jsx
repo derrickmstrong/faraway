@@ -3,8 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Logo = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
-  console.log("isAuthenticated", isAuthenticated);
-  console.log("user", user);
+  // console.log("isAuthenticated", isAuthenticated);
+  // console.log("user", user);
 
   // Add profile picture component to the logo
   const profilePicture = user ? (

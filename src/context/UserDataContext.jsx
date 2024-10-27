@@ -1,11 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Create a Context for the theme
 const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
+  const { user } = useAuth0();
   const [userData, setUserData] = useState(() => {
+    if (user) console.log('sub', user.sub); // This is the user's unique identifier
     // Load userData from local storage if available
     const savedItems = localStorage.getItem("userData");
     return savedItems ? JSON.parse(savedItems) : [];
