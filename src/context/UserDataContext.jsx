@@ -6,18 +6,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    if (!isLoading && isAuthenticated && user) {
-      const userKey = `userData-${user.sub}`;
-      const savedItems = localStorage.getItem(userKey);
-      console.log("userKey", userKey);
-      console.log("savedItems", savedItems);
-      // setUserData(savedItems ? JSON.parse(savedItems) : []);
+    if (isAuthenticated && user) {
+      try {
+        const userKey = `userData-${user.sub}`;
+        const savedItems = localStorage.getItem(userKey);
+        console.log("userKey", userKey);
+        console.log("savedItems", savedItems);
+        setUserData(savedItems ? JSON.parse(savedItems) : []);
+      } catch (error) {
+        console.error("Error loading data for user", user.sub, error);
+      }
     }
-  }, [isLoading, isAuthenticated, user]);
+  }, [isAuthenticated, user]);
 
   useEffect(() => {
     if (user) {
