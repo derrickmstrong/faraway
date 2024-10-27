@@ -14,8 +14,6 @@ export const UserDataProvider = ({ children }) => {
       try {
         const userKey = `userData-${user.sub}`;
         const savedItems = localStorage.getItem(userKey);
-        console.log("userKey", userKey);
-        console.log("savedItems", savedItems);
         setUserData(savedItems ? JSON.parse(savedItems) : []);
       } catch (error) {
         console.error("Error loading data for user", user.sub, error);
