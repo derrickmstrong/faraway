@@ -7,7 +7,7 @@ const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     if (!isLoading && isAuthenticated && user) {
